@@ -43,6 +43,7 @@ def home (request):
 
         #picking the closest div to the link we want to pick by class name
         divs = soup.find_all("div", {"class": "mainbox"})
+    
         details = []
         links = []
         #iterating through all available divs produces by the search
