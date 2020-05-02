@@ -1,0 +1,88 @@
+<form method="POST">
+  
+        <div class="form-group">
+                {% csrf_token %}
+    
+          
+            {{ searchword }}
+        </div>
+    
+        <input type="submit" class="bt btn-primary" value="submit"/>
+    </form>
+<br>
+
+
+
+
+
+
+
+
+<br>
+  
+{% comment %}
+{% for a in ''.join(perf_list) %}{% for b in details %}
+{% if forloop.counter == forloop.parentloop.counter %}
+    {{a}} 
+    <br>
+    {{b|slice:"1:2"}}<br><br>
+{% endif %}
+{% endfor %}{% endfor %}
+{% endcomment %}
+
+
+
+
+  
+{% if data %}
+('opps multiple recults came back for your Query...')
+<br><br><br><br>
+
+('you would need to pick a movie from the list in other to generate your download link')
+<br><br><br>
+
+
+{% for link,ident in data  %}
+
+
+https://fzmovies.net/{{ link }}
+<br><br>
+
+TITLE:{{ ident|slice:"1:2"}}
+<br>
+YEAR:{{ ident|slice:"3:4"}}
+<br>
+QUALITY:{{ ident|slice:"5:6"}}
+<br>
+plot:{{ ident|slice:"7:8"}}
+
+<br><br><br><br>
+
+
+  
+{% endfor %}
+{% else %}
+no links
+{% endif %}
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br>
+
+{% if rows %}
+{% for row in rows  %}
+{{row}}<br>
+  
+{% endfor %}
+{% else %}
+no rows
+{% endif %}
+    
+
+<br>
