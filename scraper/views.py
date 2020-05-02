@@ -68,12 +68,15 @@ def home (request):
             else:
                 perf_list.append(i)
 
+            print(type(perf_list))
+        print(type(details))
+
         # for link,ident in zip(perf_list, details):
         #     print('LINK:::  https://fzmovies.net/{}  :::     TITLE:{}    YEAR:{}    QUALITY:{}'.format(link, ident[1], ident[3], ident[5]))
         #     print('\n')
 
     else:
         searchword = Search()
-    return render(request, 'index.html', {'data':zip(perf_list, detail_link), 'searchword':searchword, 'links':links})
+    return render(request, 'index.html', {'data':zip(details, perf_list), 'searchword':searchword, 'links':links})
 
 

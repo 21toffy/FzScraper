@@ -45,20 +45,20 @@
 {% for link,ident in data  %}
 
 
-https://fzmovies.net/{{ link }}
-<br><br>
 
-TITLE:{{ ident|slice:"1:2"}}
+
+TITLE:{{ link|slice:"1:2"}}
 <br>
-YEAR:{{ ident|slice:"3:4"}}
+YEAR:{{ link|slice:"3:4"}}
 <br>
-QUALITY:{{ ident|slice:"5:6"}}
+QUALITY:{{ link|slice:"5:6"}}
 <br>
-plot:{{ ident|slice:"7:8"}}
+plot:{{ link|slice:"7:8"}}
 
 <br><br><br><br>
 
-
+https://fzmovies.net/{{ ident }}
+<br><br>
   
 {% endfor %}
 {% else %}
