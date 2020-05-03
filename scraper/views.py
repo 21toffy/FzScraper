@@ -80,6 +80,7 @@ def home (request):
 
     else:
         searchword = Search()
+        #the zip function is used to loop over each list and make thier values appear right ontop of each other and data would be used as a key in the template
     return render(request, 'index.html', {'data':zip(all_texts, perf_links), 'searchword':searchword})
 
 
