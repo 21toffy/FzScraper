@@ -63,11 +63,7 @@ def home (request):
             else:
                 perf_links.append(i)
 
-       
-
-        # for link,ident in zip(perf_list, details):
-        #     print('LINK:::  https://fzmovies.net/{}  :::     TITLE:{}    YEAR:{}    QUALITY:{}'.format(link, ident[1], ident[3], ident[5]))
-        #     print('\n')
+    
 
     else:
         searchword = Search()
