@@ -1,0 +1,57 @@
+<!-- the to_and template tag is used to replace white spaces with %20 in the links which conforms to fzmovies url patterns -->
+{% load to_and %}
+
+<!-- the load strip teplate tag is used to slice the texts to reveal it in the template with good readability -->
+{% load strip %}
+
+
+<form method="POST">
+    <div class="form-group">
+        {% csrf_token %}
+        {{ searchword }}
+    </div>
+    <input type="submit" class="bt btn-primary" value="submit" />
+</form>
+<br><br>
+  
+{% comment %}
+{% endcomment %}
+
+
+
+
+  
+{% if data %}
+multiple recults came back for your Query...
+<br><br>
+pick a movie from the list in other to generate your download link
+<br><br>
+
+
+{% for link,ident in data  %}
+
+
+LINK:::  https://fzmovies.net/{{ ident|to_and }}
+<br>
+
+TITLE: {{ link|slice:"1:2"|strip}}
+<br>
+YEAR: {{ link|slice:"3:4"|strip}}
+<br>
+QUALITY: {{ link|slice:"5:6"|strip}}
+<br>
+plot: {{ link|slice:"7:8"|strip}}
+
+<br><br>
+
+
+  
+{% endfor %}
+{% else %}
+no links
+{% endif %}
+
+
+
+
+
