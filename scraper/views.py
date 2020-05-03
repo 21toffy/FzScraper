@@ -14,7 +14,6 @@ def home (request):
     
     if request.method == "POST":
         searchword = request.POST.get('searchword')
-        print(searchword)
         
         #to initialize the browser
         br = mechanize.Browser()
