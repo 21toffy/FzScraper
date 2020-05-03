@@ -9,13 +9,9 @@ import requests
 
 
 def home (request):
-    divs = ''
     all_texts = ''
     perf_links = ''
-    rows = ''
-    perf_list = ''
-    detail_link = ''
-    mylist = ''
+    
     if request.method == "POST":
         searchword = request.POST.get('searchword')
         print(searchword)
@@ -68,7 +64,7 @@ def home (request):
                 perf_links.append(i)
 
         # print(all_texts)
-        print(all_texts[0][1])
+        # print(all_texts[0])
         # print(all_texts[3])
         # print(all_texts[4])
 

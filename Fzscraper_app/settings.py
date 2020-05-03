@@ -53,6 +53,12 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
+            'libraries':{
+            'to_and': 'scraper.templatetags.to_and',
+            'strip': 'scraper.templatetags.strip',
+
+            }
         },
     },
 ]
