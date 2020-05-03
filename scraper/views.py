@@ -10,8 +10,8 @@ import requests
 
 def home (request):
     divs = ''
-    links = ''
-    details = ''
+    all_texts = ''
+    perf_links = ''
     rows = ''
     perf_list = ''
     detail_link = ''
@@ -44,32 +44,33 @@ def home (request):
         #picking the closest div to the link we want to pick by class name
         divs = soup.find_all("div", {"class": "mainbox"})
     
-        details = []
+        all_texts = []
         links = []
         #iterating through all available divs produces by the search
         for div in divs:
             
             #reavealing the href property inother get link
-            rows = div.find_all('a', href=True)
-            for row in rows:               
+            a_tags = div.find_all('a', href=True)
+            for row in a_tags:               
                 links.append(row['href'])
-            for tes in divs:
-                details.append(tes.find_all(text=True))
+            for texts in divs:
+                all_texts.append(texts.find_all(text=True))
         #This eliminates all double links in the list
-        mylist = list(dict.fromkeys(links))
+        all_links = list(dict.fromkeys(links))
 
-        perf_list = []
-        det = []
+        perf_links = []
 
         #this deletes the empty strings and any movie tag link in the list of links and appends the remaining to a new list
-        for i in mylist:
+        for i in all_links:
             if i=='' or 'movietags' in i:
                 del i
             else:
-                perf_list.append(i)
+                perf_links.append(i)
 
-            print(type(perf_list))
-        print(type(details))
+        # print(all_texts)
+        print(all_texts[0][1])
+        # print(all_texts[3])
+        # print(all_texts[4])
 
         # for link,ident in zip(perf_list, details):
         #     print('LINK:::  https://fzmovies.net/{}  :::     TITLE:{}    YEAR:{}    QUALITY:{}'.format(link, ident[1], ident[3], ident[5]))
@@ -77,6 +78,6 @@ def home (request):
 
     else:
         searchword = Search()
-    return render(request, 'index.html', {'data':zip(details, perf_list), 'searchword':searchword, 'links':links})
+    return render(request, 'index.html', {'data':zip(all_texts, perf_links), 'searchword':searchword})
 
 
