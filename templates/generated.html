@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Toffy</title>
+</head>
+<body>
+  <style>
+    body {
+        background: #dfd1d1;
+      }
+
+      .nav-link {
+        color: #555;
+      }
+
+      .nav-link:hover {
+        background: #f5f5f5;
+      }
+
+      .effect-5::after{
+        position: absolute;
+        content: "";
+        z-index: -1;
+        bottom: 14px;
+        left: 30px;
+        right: 30px;
+        top: 14px;
+        background: #aaa;
+        box-shadow: 0 0 25px 17px #aaa;
+        border-radius: 100px/10px;
+    }
+    .nav-link {
+      color: #555;
+    }
+
+    .nav-link:hover {
+      background: black;
+      color: white;
+    }
+</style>
+<nav class="navbar navbar-expand-lg py-3 navbar-dark bg-dark shadow-sm">
+  <div class="container">
+    <a href="#" class="navbar-brand">
+      <!-- Logo Image -->
+      <img src="https://res.cloudinary.com/mhmd/image/upload/v1557368579/logo_iqjuay.png" width="45" alt="" class="d-inline-block align-middle mr-2">
+      <!-- Logo Text -->
+      <span class="text-uppercase font-weight-bold">Company</span>
+    </a>
+
+    <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+
+    <div id="navbarSupportedContent" class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active"><a href="#" class="nav-link">Home <span class="sr-only">(current)</span></a></li>
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<h3>Your Download Links are as follows</h3>
+
+
+  {% for link in data %}
+    <div class="card">
+      <div class="card-body">
+        <a href="{{link}}"> Download link {{forloop.counter}} </a>
+        <small>copy and paste the download link...or ust click on it</small>
+        <br>
+        <h6>{{link}}</h6>
+      </div>
+    </div>
+
+{% endfor %}
+
+</body>
+</html>
+
