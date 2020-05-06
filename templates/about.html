@@ -41,6 +41,17 @@
       background: black;
       color: white;
     }
+    .centre-div {
+        background: white;
+        color: black;
+        text-align: center;
+        padding: 50px 30px;
+        margin: 50px 50px;
+    }
+
+    h4 .design{
+
+    }
 </style>
 <nav class="navbar navbar-expand-lg py-3 navbar-dark bg-dark shadow-sm">
   <div class="container">
@@ -48,32 +59,40 @@
       <!-- Logo Image -->
       <img src="https://res.cloudinary.com/mhmd/image/upload/v1557368579/logo_iqjuay.png" width="45" alt="" class="d-inline-block align-middle mr-2">
       <!-- Logo Text -->
-      <span class="text-uppercase font-weight-bold">Company</span>
+      <span class="text-uppercase font-weight-bold">Fzscap</span>
     </a>
 
     <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
 
     <div id="navbarSupportedContent" class="collapse navbar-collapse">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active"><a href="#" class="nav-link">Home <span class="sr-only">(current)</span></a></li>
+        <li class="nav-item active"><a href="{% url 'scraper:index' %}" class="nav-link">Home <span class="sr-only">(current)</span></a></li>
         <li class="nav-item"><a href="{% url 'scraper:about' %}" class="nav-link">About</a></li>
       </ul>
     </div>
   </div>
 </nav>
-<h3>Your Download Links are as follows</h3>
 
+<div class="centre-div">
+    <h1>About</h1> <br>
+    <h5>
+            You remeber how painful searching for movies on Fzmovies is thanks to all the ads poping up at every movement of the cussor, or movement of the page or cliking on links. Well good news you dont have to go through all that as this website saves you 95 percent of the stress.
+    </h5>
+    <br>
+    <br>
 
-  {% for link in data %}
-    <div class="card">
-      <div class="card-body">
-        <a href="{{link}}"> Download link {{forloop.counter}} </a>
-        <small>copy and paste the download link...or ust click on it</small>
-      </div>
-    </div>
+    <h2>All You Have To Do Is</h2>
+   <h6>
+        1. search fot the movie<br>
+   </h6>
+   <h6>
+           2. click on generate<br>
+   </h6>
 
-{% endfor %}
+    <br>
+    <h5>your download link or the download button would be available to you</h5><br>
+    <h5>no ads no pop up's. Simple and straight forward</h5>
 
-</body>
-</html>
+   
 
+</div>

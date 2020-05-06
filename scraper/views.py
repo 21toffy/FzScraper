@@ -167,3 +167,7 @@ def generate_download_link(request):
     data = real_links
 
     return render(request, 'generated.html', {'data':data} )
+
+
+def about(request):
+    return render(request,'about.html')    
