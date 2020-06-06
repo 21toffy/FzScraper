@@ -3,7 +3,7 @@ beautifulsoup4==4.9.0
 bs4==0.0.1
 certifi==2020.4.5.1
 chardet==3.0.4
-Django==3.0.5
+Django==3.0.7
 django-rest-framework==0.1.0
 djangorestframework==3.11.0
 html5lib==1.0.1
