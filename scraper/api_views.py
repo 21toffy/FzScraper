@@ -10,6 +10,7 @@ import re
 import mechanize
 from bs4 import BeautifulSoup
 from rest_framework.response import Response
+from .models import *
 
 
 br = mechanize.Browser()
@@ -21,10 +22,46 @@ from django.http import HttpResponse
 #Exceptions error 500 , 503 , Backend Error
 @api_view(['GET', 'POST'])
 def home (request):
+
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    
+    device_type = ""
+    browser_type = ""
+    browser_version = ""
+    os_type = ""
+    os_version = ""
+    if request.user_agent.is_mobile:
+        device_type = "Mobile"
+    if request.user_agent.is_tablet:
+        device_type = "Tablet"
+    if request.user_agent.is_pc:
+        device_type = "PC"
+    
+    browser_type = request.user_agent.browser.family
+    browser_version = request.user_agent.browser.version_string
+    os_type = request.user_agent.os.family
+    os_version = request.user_agent.os.version_string
+    user_device, created = UserDevice.objects.get_or_create(
+        ip = ip,
+        device_type = device_type,
+        browser_type = browser_type,
+        browser_version = browser_version,
+        os_type = os_type,
+        os_version = os_version,
+    )
     all_texts = ''
     perf_links = ''
 
     searchword = request.data.get('searchword')
+
+    search_term = Search.objects.create(
+        user_device = user_device,
+        movie_name = searchword
+    )
 
     br.open("https://www.fzmovies.net/")
     #initialize form i think
@@ -92,6 +129,47 @@ def home (request):
 def generate_download_link(request):
     download_url = request.data.get('movie_to_download')
     detail = urllib.parse.unquote(str(download_url))
+
+    # new stuff 
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    
+    device_type = ""
+    browser_type = ""
+    browser_version = ""
+    os_type = ""
+    os_version = ""
+    if request.user_agent.is_mobile:
+        device_type = "Mobile"
+    if request.user_agent.is_tablet:
+        device_type = "Tablet"
+    if request.user_agent.is_pc:
+        device_type = "PC"
+    
+    browser_type = request.user_agent.browser.family
+    browser_version = request.user_agent.browser.version_string
+    os_type = request.user_agent.os.family
+    os_version = request.user_agent.os.version_string
+
+    user_device, created = UserDevice.objects.get_or_create(
+        ip = ip,
+        device_type = device_type,
+        browser_type = browser_type,
+        browser_version = browser_version,
+        os_type = os_type,
+        os_version = os_version,
+    )
+
+
+    downloaded_movie = Downloaded.objects.create(
+        movie_name = download_url,
+        user_device = user_device,
+    )
+
+    # new stuff 
 
     #for opening detail page
     r = br.open(detail)
