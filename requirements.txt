@@ -2,7 +2,7 @@ asgiref==3.5.2
 backports.zoneinfo==0.2.1
 beautifulsoup4==4.11.1
 bs4==0.0.1
-certifi==2022.9.24
+certifi==2022.12.7
 charset-normalizer==2.1.1
 Django==4.1.2
 django-rest-framework==0.1.0
